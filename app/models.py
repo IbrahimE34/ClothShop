@@ -21,6 +21,11 @@ class Shop(models.Model):
     data = models.DateTimeField()
     cloths = models.ManyToManyField(Category, related_name="cloths")
 
+
+    def total_cloth_quantity(self):
+        return self.shop_cloth_set.aggregate(total=models.Sum("quantity"))["total"]  or 0
+
+
 class Cloth(models.Model):
     name = models.CharField(max_length=15)
     brand = models.CharField(max_length=25)
@@ -29,6 +34,10 @@ class Cloth(models.Model):
     data = models.DateTimeField()
     size = models.IntegerField
     category = models.ForeignKey(Category, related_name="categories", on_delete=models.CASCADE)
+
+
+
+
 
 class Shop_Cloth(models.Model):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
