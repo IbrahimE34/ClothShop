@@ -1,4 +1,4 @@
 django
 djangorestframework
-pillow
-simplejwt
+djangorestframework-simplejwt
+Pillow
