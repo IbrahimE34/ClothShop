@@ -10,6 +10,14 @@ class ShopSerializers(serializers.ModelSerializer):
         model = Shop
         fields = ['id', 'name', 'address']
 
+    def validate(self,attrs):
+        name = attrs.get("name")
+        address = attrs.get("address")
+        if Shop.objects.filter(name+name, address=address).exists():
+            raise serializers.ValidationError("Магазин с таким названием и адресом уже есть")
+        return attrs
+
+
 class CategorySerializers(serializers.ModelSerializer):
 
 

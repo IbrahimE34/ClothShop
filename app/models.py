@@ -30,7 +30,7 @@ class Shop(models.Model):
     address = models.CharField(max_length=30)
     name = models.CharField(max_length=15)
     created_at = models.DateTimeField()
-    clothes = models.ManyToManyField(Cloth, through="ShopCloth", related_name="shops")
+    # clothes = models.ManyToManyField(Cloth, through="ShopCloth", related_name="shops")
 
     def __str__(self):
         return f"Магазин: {self.name}, адрес: {self.address}"

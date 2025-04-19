@@ -1,4 +1,5 @@
 from http.client import HTTPResponse
+from venv import create
 
 from django.core.serializers import serialize
 from django.shortcuts import render
@@ -20,6 +21,16 @@ from .serializers import ShopClothSerializer
 class ShopCreate(CreateAPIView):
     queryset = Shop.objects.all()
     serializer_class = ShopSerializers
+    def perform_create(self, serializer):
+        name = serialize.validated_data["name"]
+        address = serialize.validated_data["address"]
+        shop, created = Shop.objects.get_or_create(
+            name=name, address=address,
+            defaults ={"create_at": serializer.valedated_data.get("created_at")}
+        )
+        self.shop= shop
+
+
 
 class ShopApiListPagination(PageNumberPagination):
     page_size = 2

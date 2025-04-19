@@ -6,4 +6,5 @@ admin.site.register(Cloth)
 admin.site.register(Category)
 admin.site.register(ShopCloth)
 
+
 # Register your models here.

@@ -20,3 +20,12 @@ def register(request):
         }, status=200)
     return Response(serializer.errors, status=400)
 
+
+
+
+
+
+
+
+
+
